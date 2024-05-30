@@ -1,8 +1,23 @@
-@model TModel
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<h1>Hangman Game</h1>
+<h2>The word to guess: @ViewBag.secret</h2>
+<h2>Guesses left: @ViewBag.guesses</h2>
+<h2>Incorrect letters: @ViewBag.letters</h2>
+@if (ViewBag.Won != null)
+{
+    <h2>@ViewBag.Won</h2>
+}
+<form method="post" asp-controller="Hangman" asp-action="Index">
+    <label for="guess">Guess a letter or a word: </label>
+    <input type="text" id="guess" name="guess" minlength="1"/>
+    <input type="submit" value="Guess"/>
+</form>
+<form method="get" asp-controller="Hangman" asp-action="Restart">
+    <input type="submit" value="Restart"/>
+</form>
+
